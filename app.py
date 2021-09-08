@@ -22,6 +22,8 @@ def home_page():
 
 @app.route("/question/<int:wanted_question>")
 def survey_page(wanted_question):
+    responses = session.get(RESPONSES_KEY)
+
     if wanted_question != len(responses):
         flash("You attempted to go to the wrong question.")
         return redirect(f"/question/{len(responses)}")
